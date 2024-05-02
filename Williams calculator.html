@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+*{
+   margin:0;
+   padding:0;
+   box-sizing: border-box;  
+}
+.header{
+    color:white;
+    font-family:Times;
+    font-size:20px;
+    margin-top:30px;
+    margin-bottom:50px;
+}
+body {
+    overflow:hidden;
+    display:flex;
+    height:100%;
+    flex-direction:column;
+    background:
+   linear-gradient(150deg,purple,blue,purple,blue,red);
+    background-size:100%;
+    width:100%;
+    justify-content:center;
+    align-items:center;
+}
+.calculator {
+    flex: 0 0 95%;
+}
+.screen{
+    width:100%;
+    font-size: 17px;
+    font-family:Times;
+    color:white;
+    border:none;
+    height:40%;
+    text-align:center;
+    background: rgb(41,41,56);
+}
+.buttons{
+    display: flex;
+    width:100%;
+    flex-wrap: wrap;
+    transition: all 0.5s linear;
+    text-align:left;
+}
+.button{
+    width: 100%;
+    height:100vh;
+    transition: all 2s ease;
+    padding: 50px;
+    border: 1px solid #ffcf2cd8;
+}
+.buttons:hover {
+    background: blue;
+}
+.zever-yellow{
+    color: white;
+    padding:30px;
+    background:Dodgerblue;
+}
+.zever-grey{
+    color:black;
+    padding:25px;
+    background:rgb(224,224,224);
+}
+.zever,.sineclass,.zever-equal,.zever-clear
+   {
+    font-size: 13px;
+    padding:20.5px;
+    width:9.6%;
+}
+.hey{
+    text-align:left;  
+    margin:0;
+}
+.zever-equal{
+    background:green;
+    font-size:15px;
+    color:white;
+}
+.zever-clear{
+    font-size:15px;
+    background:red;
+    color:white;
+}
+#shift{
+    color:red;
+    background:yellow;
+    font-size:9px;
+}
+.active{
+    display:none;
+}
+#inversecos,#inversetan,#inverse{
+    font-size:8px;
+    color:red;
+}
+</style>
+<title>Williams Calculator</title>
+<meta name="viewport" content="width=device-width, user-scalable=no">
+<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+</head>
+<body>
+<section class="header">Williams Calculator</section>
+<section class="calculator">
+<form>
+<input type="text" name="" id="" class="screen" autofocus>
+</form>
+<div class="buttons">
+<button type="button" id="container" class="zever zever-grey hey" data-num="sin( ">sin </button>
+<button type="button" id="container" class="zever zever-grey hey" data-num="cos( ">cos  </button>
+<button type="button" id="container" class="zever zever-grey hey" data-num="tan("> tan  </button>
+<button type="button" id="inverse" class="zever zever-grey hey" data-num="sin·1(">sin·¹</button>
+<button type="button" id="inversecos" class="zever zever-grey hey" data-num="cos·1(">cos·¹</button>
+<button type="button" id="inversetan" class="zever zever-grey hey" data-num="tan·1(">tan·¹</button>
+<button type="button" id="squareme" class="zever zever-grey" data-num="square("> x²</button>
+<button type="button" id="cubeme" class="zever zever-grey" data-num="cube(">x³</button>
+<button type="button" class="zever zever-yellow" data-num="9">9 </button>
+<button type="button" class="zever zever-yellow" data-num="8">8 </button>
+<button type="button" id="tangentclass" class="zever zever-yellow" data-num="7">7 </button>
+<button type="button" id="squareroot"class="zever zever-grey" data-num="Math.sqrt(">√</button>
+<button type="button" id="squareroot"class="zever zever-grey" data-num="Math.cbrt(">³√</button>
+<button type="button" class="zever zever-grey" data-num="/">/</button>
+<button type="button" class="zever zever-grey" data-num="*"> * </button>
+<button type="button" class="zever zever-grey" data-num="+">+</button>
+<button type="button" class="zever zever-yellow" data-num="6">6 </button>
+<button type="button" class="zever zever-yellow" data-num="5">5 </button>
+<button type="button" class="zever zever-yellow" data-num="4">4 </button>
+<button type="button" class="zever zever-per" data-num="">℅</button>
+<button type="button" class="zever zever-grey" data-num="(">(</button>
+<button type="button" class="zever zever-grey" data-num=")">)</button>
+<button type="button" class="zever zever-grey" data-num="-">- </button>
+<button type="button" class="zever zever-grey" data-num="(22/7)">π</button>
+<button type="button" id="precentme"class="zever zever-yellow" data-num="3">3 </button>
+<button type="button" class="zever zever-yellow" data-num="2">2</button>
+<button type="button" class="zever zever-yellow" data-num="1">1 </button>
+<button type="button" class="zever zever-yellow" data-num="0">0</button>
+<button type="button" class="zever zever-grey" data-num=".">. </button>
+<button type="button" class="zever zever-grey" data-num="e">e</button>
+<button type="button" class="zever-clear zever-grey" data-num="">C</button>
+<button type="button" class="zever-equal zever-grey" data-num="=">=</button>
+</div>
+</section>
+<div style="color:white;" class="container">
+<script>
+const headerEl=document.querySelector("header");
+const containerEl=document.querySelector(".container");
+const careers=["𝕄𝕪 𝕟𝕒𝕞𝕖 𝕚𝕤 ℤ𝕖𝕧𝕖𝕣 𝕎𝕚𝕝𝕝𝕚𝕒𝕞𝕤✨😇  ","𝔸𝕞 20𝕪𝕣𝕤 𝕠𝕝𝕕😆  ","𝔸𝕞 in 200 level 𝕤𝕥𝕦𝕕𝕪𝕚𝕟𝕘 𝕔𝕠𝕞𝕡𝕦𝕥𝕖𝕣 𝕤𝕔𝕚𝕖𝕟𝕔𝕖 𝕒𝕥 𝔽𝕦𝕥𝕞𝕚𝕟𝕟𝕒🙃 ", "𝕀 𝕝𝕠𝕧𝕖 𝕞𝕒𝕜𝕚𝕟𝕘 𝕣𝕖𝕤𝕖𝕒𝕣𝕔𝕙, 𝕡𝕝𝕒𝕪𝕚𝕟𝕘 𝕧𝕚𝕕𝕖𝕠 𝕘𝕒𝕞𝕖𝕤 𝕒𝕟𝕕 𝕔𝕠𝕕𝕚𝕟𝕘✨🥂 "," ","𝕥𝕙𝕒𝕟𝕜𝕤 𝕗𝕠𝕣 𝕪𝕠𝕦𝕣 𝕥𝕚𝕞𝕖 𝕘𝕦𝕪𝕤🤗 ","ℍ𝕖𝕣𝕖 𝕚𝕤 𝕞𝕪 𝕌𝔹𝔸 𝕒𝕔𝕔𝕠𝕦𝕟𝕥 𝕟𝕦𝕞𝕓𝕖𝕣: 2126614776 ✨😇 <br> 𝔦𝔫𝔠𝔞𝔰𝔢 𝔲 𝔩𝔬𝔳𝔢 𝔪𝔶 𝔴𝔬𝔯𝔨   "];
+let careerIndex=0;
+let characterIndex=0;
+updateText()
+function updateText(){
+characterIndex++  
+containerEl.innerHTML=""  +careers[careerIndex].slice(0,characterIndex);
+if(characterIndex===careers[careerIndex].length){
+        careerIndex++;
+        characterIndex=0;
+    }
+if(careerIndex===careers.length){
+    careerIndex=0;
+}
+    setTimeout(updateText,80);
+    }
+ 
+const perBtn=document.querySelector('.zever-per');
+const inverseEl=document.querySelector('inverse');
+const inversecosEl=document.querySelector('inversecos');
+const inversetanEl=document.querySelector('.inversetan');
+const cubemeEl=document.querySelector('#cubeme');
+const squaremeEl=document.querySelector('#squareme');
+const squarerootEl=document.querySelector('#squareroot');
+const tangentclassEl=document.querySelector('#tangentclass');
+const sineclassEl=document.querySelector('#sineclass');
+const cosineclassEl=document.querySelector('#cosineclass');
+const btns=document.querySelectorAll('.zever');
+const screen=document.querySelector('.screen');
+const equalBtn=document.querySelector('.zever-equal');
+const clearBtn=document.querySelector('.zever-clear');
+for(let i=0; i<btns.length;i++) {
+    btns[i].addEventListener('click',()=>{
+        let number= btns[i].getAttribute('data-num');
+        screen.value+=number;
+    })
+equalBtn.addEventListener('click',()=>{
+    let value=eval(screen.value);
+    if(screen.value==''){
+        screen.value="please enter a value";
+    }
+    else{
+        screen.value=value;
+    }
+    })
+}
+perBtn.addEventListener("click",()=>{
+    percent();
+   function percent(value){  
+   let x=screen.value/100;
+    screen.value+="%";
+    screen.value=""+x;
+}    
+})
+clearBtn.addEventListener('click',()=>{
+    screen.value='';
+})
+sineclassEl.addEventListener("click",()=>{
+  sin(); 
+})
+cosineclassEl.addEventListener("click",()=>{
+   cos·1();
+})
+tangentclassEl.addEventListener("click",()=>{
+    tan();
+})
+function tan(degree){
+    let x=Math.tan(degree*Math.PI/180);
+    return x.toFixed(2);
+}
+function sin(degree){
+    let x=Math.sin(degree*Math.PI/180);
+    return x.toFixed(2);
+}
+function cos(degree){
+    let x=Math.cos(degree*Math.PI/180);
+    return x.toFixed(2);
+}
+squaremeEl.addEventListener("click",()=>{
+    square();
+})
+function square(square){
+return square*square;
+}
+cubemeEl.addEventListener("click",()=>{
+    cube();
+})
+function cube(square){
+    return square*square*square
+}
+inverseEl.addEventListener("click",()=>{
+    sin·1();
+})
+function sin·1(degree){
+    π=Math.PI;
+   let x=180/π;
+   return x*=Math.asin(degree);
+}
+inversecosEl.addEventListener("click",()=>{
+    cos·1();
+})
+function cos·1(degree){
+   π=Math.PI;
+   let x=180/π;
+    return x*=Math.acos(degree);   
+}
+inversetanEl.addEventListener("click",()=>{
+    tan·1();
+})
+function tan·1(degree){
+    π=Math.PI; 
+    let x=(180/π);
+    return x*=Math.atan(degree);
+}
+</script>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
